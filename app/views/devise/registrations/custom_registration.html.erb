@@ -1,0 +1,57 @@
+
+
+<h2>Add New User</h2>
+
+<%= simple_form_for(resource, as: :user, url: registration_path(:user), html: { class: 'form-signup' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-floating mb-3">
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email", class: 'form-control' } %>
+   
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= f.input :password,
+                required: true,
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { autocomplete: "new-password", class: 'form-control' } %>
+    
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: "new-password", class: 'form-control' } %>
+  
+  </div>
+
+  <!-- Add radio buttons for admin attribute -->
+  <div class="form-check form-check-inline">
+    <%= f.label :role, class: "form-check-label" do %>
+      <%= f.radio_button :role, true, class: 'form-check-input' %> Admin
+    <% end %>
+  </div>
+
+  <div class="form-check form-check-inline">
+    <%= f.label :role, class: "form-check-label" do %>
+      <%= f.radio_button :role, false, class: 'form-check-input' %> Employee
+    <% end %>
+  </div>
+
+ 
+
+  <div class="form-actions">
+  <%= f.button :submit, "Sign up", class: 'btn btn-primary', onclick: 'return confirmSubmit()' %>
+  </div>
+
+  
+<script>
+  function confirmSubmit() {
+    const message = "Are you sure you want to sign up?";
+    return confirm(message);
+  }
+</script>
+<% end %>

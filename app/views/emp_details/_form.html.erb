@@ -1,0 +1,35 @@
+
+<%= simple_form_for(@emp_detail) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :fullname %>
+    <%= f.input :emp_id %>
+    <%= f.input :rank %>
+    <%= f.input :division %>
+    <%= f.input :sup_name %>
+    <%= f.input :pos_title %>
+    <%= f.input :ser_year %>
+    <%= f.input :ser_month %>
+    <%= f.input :educ_course %>
+    <%= f.input :educ_grad %>
+    <%= f.input :educ_skill %>
+    <%= f.input :educ_certificate %>
+    <%= f.input :educ_othskill %>
+    <%= f.input :contact %>
+    <%= f.input :department %>
+    <%= f.input :sup_title %>
+    <%= f.input :hr_perday %>
+    <%= f.input :hr_perweek %>
+    <%= f.input :break %>
+    <%= f.input :launch %>
+    <%= f.input :ot_weekday %>
+    <%= f.input :ot_weekend %>
+    <%= f.input :workday %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

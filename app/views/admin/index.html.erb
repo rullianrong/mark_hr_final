@@ -1,0 +1,118 @@
+
+<br>
+<div class="container-fluid">
+<div class="container-sm">
+ <!-- Add New User Button and Search Bar -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+   
+  <%= link_to 'Add New User', new_user_registration_path, class: 'btn btn-success' %>
+
+    <div class="input-group" style="max-width: 250px;"> <!-- Adjust max-width to your preference -->
+     <input type="text" class="form-control" id="searchInput" placeholder="Search">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button">Search</button>
+      </div>
+    </div>
+  </div>
+
+
+ <table class="table">
+  <thead>
+    <tr>
+      <td>Role</td>
+      <td>Email Address</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.role %></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= link_to admin_index_path, class: "btn btn-info" do %>
+            <i class="fa fa-eye"></i>
+          <% end %>
+          <td>
+            <%= link_to admin_index_path, class: "btn btn-primary" do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to admin_index_path, method: :delete, class: "btn btn-danger", onclick: "return confirm('Are you sure you want to delete this user and their associated emp_detail?');" do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </td>
+          <td>
+           
+              <%= link_to admin_index_path, method: :patch, class: "btn btn-success", onclick: "return showApprovalConfirmation();" do %>
+                <i class="fa fa-check"></i>
+             
+            <% end %>
+          </td>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <center>
+  <div id="recordNotFound" style="display: none;">Record not found</div>
+  </center>
+</div>
+</div>
+
+<script>
+  function showApprovalConfirmation() {
+    if (confirm('Are you sure you want to approve this user?')) {
+      alert('User approved successfully.');
+      return true; // Continue with the PATCH request
+    }
+    return false; // Cancel the PATCH request if the user cancels the initial confirmation
+  }
+</script>
+
+<script>
+  // Get the input field and table body
+  var searchInput = document.getElementById("searchInput");
+  var tableBody = document.querySelector("tbody");
+  var recordNotFound = document.getElementById("recordNotFound");
+
+  // Add an event listener to the input field for keyup events
+  searchInput.addEventListener("keyup", function() {
+    var searchText = searchInput.value.toLowerCase();
+    var rows = tableBody.getElementsByTagName("tr");
+    var foundMatch = false;
+
+    // Iterate through the table rows and hide those that don't match the search input
+    for (var i = 0; i < rows.length; i++) {
+      var row = rows[i];
+      var cells = row.getElementsByTagName("td");
+      var match = false;
+
+      // Check each cell in the row for a match with the search text
+      for (var j = 0; j < cells.length; j++) {
+        var cell = cells[j];
+        if (cell.textContent.toLowerCase().indexOf(searchText) > -1) {
+          match = true;
+          break; // Exit the loop if a match is found in this row
+        }
+      }
+
+      // Show or hide the row based on the match
+      if (match) {
+        row.style.display = "";
+        foundMatch = true;
+      } else {
+        row.style.display = "none";
+      }
+    }
+
+    // Show or hide the "Record not found" message
+    if (foundMatch) {
+      recordNotFound.style.display = "none";
+    } else {
+      recordNotFound.style.display = "block";
+    }
+  });
+</script>
