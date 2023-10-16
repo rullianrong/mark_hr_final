@@ -14,10 +14,10 @@
   <%= render 'layouts/navbar'%>
  
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" data-controller="modal"
-  data-action="turbo:frame-load->modal#open" data-bs-focus="false">
+      data-action="turbo:frame-load->modal#open" data-bs-focus="false">
     <div class="modal-dialog">
       <div class="modal-content">
-        <%= turbo_frame_tag "remote_modal" %>
+        <%= turbo_frame_tag "reg_form_modal" %>
       </div>
     </div>
   </div>

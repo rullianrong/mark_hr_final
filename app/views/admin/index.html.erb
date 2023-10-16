@@ -5,7 +5,7 @@
  <!-- Add New User Button and Search Bar -->
   <div class="d-flex justify-content-between align-items-center mb-3">
    
-  <%= link_to 'Add New User', new_user_registration_path, class: 'btn btn-success' %>
+  <%= link_to 'Add New User', new_user_registration_path, class: 'btn btn-success', data: {turbo_frame: 'reg_form_modal'} %>
 
     <div class="input-group" style="max-width: 250px;"> <!-- Adjust max-width to your preference -->
      <input type="text" class="form-control" id="searchInput" placeholder="Search">

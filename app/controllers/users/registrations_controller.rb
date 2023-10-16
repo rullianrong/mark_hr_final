@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     build_resource({})
     resource.build_emp_detail
-    respond_with self.resource
+    # respond_with self.resource
     super
   end
 

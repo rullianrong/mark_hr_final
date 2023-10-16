@@ -21,7 +21,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li>
-              <%# <%= link_to "Sign Out", custom_destroy_user_session_path, class: 'dropdown-item' %> 
+              <%= link_to "Sign Out", destroy_user_session_path, class: 'dropdown-item', data: { turbo_method: :delete } %> 
             </li>
             <li>
               <%= link_to "Edit Profile", edit_user_registration_path, class: 'dropdown-item' %>
